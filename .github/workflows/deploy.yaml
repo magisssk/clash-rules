@@ -23,10 +23,11 @@ jobs:
 
       - name: Prepare rules
         run: |
-          mkdir publish
-          for file in $(find . -type f -name "*-rules.yaml"); do
-            cp "$file" "./publish/$(basename $file)"
-          done
+          mkdir -p publish/ip
+          mkdir -p publish/domain
+          
+          cp -r ip/* ./publish/ip/
+          cp -r domain/* ./publish/domain/
 
       - name: Push to release branch
         run: |
